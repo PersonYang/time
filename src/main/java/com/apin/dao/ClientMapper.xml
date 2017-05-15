@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.apin.dao.ClientMapper">
+    <resultMap id="clientResultMap" type="com.apin.po.ApinClient">
+        <id property="id" column="id"/>
+        <result property="phone" column="phone"/>
+        <result property="nickName" column="nick_name"/>
+        <result property="headPic" column="head_pic"/>
+        <result property="invitationCode" column="invitation_code"/>
+        <result property="isMerchant" column="is_merchant"/>
+        <result property="createTime" column="create_time"/>
+        <result property="developerId" column="developer_id"/>
+        <result property="maintenancerId" column="maintenancer_id"/>
+    </resultMap>
+
+    <select id="selectClientWithId" resultMap="clientResultMap" parameterType="Integer">
+        select * from apin_client ct where ct.id=#{id}
+    </select>
+
+</mapper>

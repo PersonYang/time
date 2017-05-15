@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.apin.dao.MerchantFlightDetailInfoMapper">
+    <resultMap id="merchantFlightDetailInfoResultMap" type="com.apin.po.MerchantFlightDetailInfo">
+        <id column="id" property="id"/>
+        <result column="parent_id" property="parentId"/>
+        <result column="trip_number" property="tripNumber"/>
+        <result column="journey_id" property="journeyId"/>
+        <result column="air_comp" property="airComp"/>
+        <result column="flight_no" property="flightNo"/>
+        <result column="depart_place_code" property="departPlaceCode"/>
+        <result column="depart_place" property="departPlace"/>
+        <result column="dest_place_code" property="destPlaceCode"/>
+        <result column="dest_place" property="destPlace"/>
+        <result column="depart_airport" property="departAirport"/>
+        <result column="arrive_airport" property="arriveAirport"/>
+        <result column="depart_date" property="departDate"/>
+        <result column="arrive_date" property="arriveDate"/>
+        <result column="depart_time" property="departTime"/>
+        <result column="arrive_time" property="arriveTime"/>
+        <result column="has_turn" property="hasTurn"/>
+        <result column="cabin_name" property="cabinName"/>
+        <result column="cabin_type" property="cabinType"/>
+        <result column="plane_model" property="planeModel"/>
+        <result column="flying_time" property="flyingTime"/>
+    </resultMap>
+
+    <select id="selectMatchedMerchantFlightDetailInfoByJourneyId" resultMap="merchantFlightDetailInfoResultMap" parameterType="Long">
+        select * from apin_merchant_flight_detail_info where journey_id=#{journeyId} order by trip_number
+    </select>
+
+</mapper>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

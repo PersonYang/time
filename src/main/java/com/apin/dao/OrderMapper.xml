@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.apin.dao.OrderMapper">
+    
+    <resultMap id="orderResultMap" type="com.apin.po.Order">
+        <id column="id" property="id"/>
+        <result column="order_no" property="orderNo"/>
+        <result column="journey_id" property="journeyId"/>
+        <result column="user_id" property="userId"/>
+        <result column="merchant_id" property="merchantId"/>
+        <result column="unit_price" property="unitPrice"/>
+        <result column="passenger_num" property="passengerNum"/>
+        <result column="insurance_price" property="insurancePrice"/>
+        <result column="insurance_num" property="insuranceNum"/>
+        <result column="total_price" property="totalPrice"/>
+        <result column="actual_pay_cash" property="actualPayCash"/>
+        <result column="pay_model" property="payModel"/>
+        <result column="currency" property="currency"/>
+        <result column="status" property="status"/>
+        <result column="status_by_app" property="statusByApp"/>
+        <result column="pay_voucher" property="payVoucher"/>
+        <result column="account" property="account"/>
+        <result column="payer" property="payer"/>
+        <result column="actual_passenger_num" property="actualPassengerNum"/>
+        <result column="rest_price" property="restPrice"/>
+        <result column="price_id" property="priceId"/>
+        <result column="create_time" property="createTime"/>
+        <result column="update_time" property="updateTime"/>
+        <result column="travel_agency_id" property="travelAgencyId"/>
+        <result column="supplier_id" property="supplierId"/>
+    </resultMap>
+
+
+    <select id="selectOrderByOrderNo" parameterType="Long" resultMap="orderResultMap">
+        select * from apin_order where order_no=#{orderNo}
+    </select>
+
+    <update id="updateOrderSelective" parameterType="com.apin.po.Order" flushCache="true">
+        update apin_order
+        <set>
+            <if test="journeyId!=null">
+                journey_id=#{journeyId},
+            </if>
+            <if test="userId!=null">
+                user_id=#{userId},
+            </if>
+            <if test="merchantId!=null">
+                merchant_id=#{merchantId},
+            </if>
+            <if test="unitPrice!=null">
+                unit_price=#{unitPrice,jdbcType=DECIMAL},
+            </if>
+            <if test="passengerNum!=null">
+                passenger_num=#{passengerNum},
+            </if>
+            <if test="insurancePrice!=null">
+                insurance_price=#{insurancePrice,jdbcType=DECIMAL},
+            </if>
+            <if test="insuranceNum!=null">
+                insurance_num=#{insuranceNum},
+            </if>
+            <if test="totalPrice!=null">
+                total_price=#{totalPrice,jdbcType=DECIMAL},
+            </if>
+            <if test="actualPayCash!=null">
+                actual_pay_cash=#{actualPayCash,jdbcType=DECIMAL},
+            </if>
+            <if test="payModel!=null">
+                pay_model=#{payModel},
+            </if>
+            <if test="currency!=null and currency!=''">
+                currency=#{currency},
+            </if>
+            <if test="status!=null">
+                status=#{status},
+            </if>
+            <if test="statusByApp!=null">
+                status_by_app=#{statusByApp},
+            </if>
+            <if test="payVoucher!=null and payVoucher!=''">
+                pay_voucher=#{payVoucher},
+            </if>
+            <if test="account!=null and account!=''">
+                account=#{account},
+            </if>
+            <if test="payer!=null and payer!=''">
+                payer=#{payer},
+            </if>
+            <if test="payTime!=null">
+                pay_time=#{payTime},
+            </if>
+            <if test="actualPassengerNum!=null">
+                actual_passenger_num=#{actualPassengerNum},
+            </if>
+            <if test="restPrice!=null">
+                rest_price=#{restPrice},
+            </if>
+            <if test="priceId!=null">
+                price_id=#{priceId},
+            </if>
+            <if test="restPayModel!=null">
+                rest_pay_model=#{restPayModel},
+            </if>
+            <if test="restCurrency!=null and restCurrency!=''">
+                rest_currency=#{restCurrency},
+            </if>
+            <if test="restStatusByApp!=null">
+                rest_status_by_app=#{restStatusByApp},
+            </if>
+            <if test="restPayVoucher!=null and restPayVoucher!=''">
+                rest_pay_voucher=#{restPayVoucher},
+            </if>
+            <if test="restAccount!=null and restAccount!=''">
+                rest_account=#{restAccount},
+            </if>
+            <if test="restPayer!=null and restPayer!=''">
+                rest_payer=#{restPayer},
+            </if>
+            <if test="restPayTime!=null">
+                rest_pay_time=#{restPayTime},
+            </if>
+            <if test="createTime!=null">
+                create_time=#{createTime},
+            </if>
+            <if test="updateTime!=null">
+                update_time=#{updateTime}
+            </if>
+        </set>
+        where order_no=#{orderNo}
+    </update>
+
+
+
+
+</mapper>

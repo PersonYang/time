@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.apin.dao.RouteMapper">
+
+    <update id="updateRouteSelective" parameterType="com.apin.po.Route" flushCache="true">
+        update apin_route
+        <set>
+            <if test="routeStatus!=null">
+                route_status=#{routeStatus},
+            </if>
+            <if test="userMobile!=null and userMobile!=''">
+                user_mobile=#{userMobile},
+            </if>
+            <if test="userId!=null">
+                user_id=#{userId},
+            </if>
+            <if test="routeType!=null">
+                route_type=#{routeType},
+            </if>
+            <if test="passengerNum!=null">
+                passenger_num=#{passengerNum},
+            </if>
+            <if test="description!=null and description!=''">
+                description=#{description},
+            </if>
+            <if test="acceptId!=null">
+                accept_id=#{acceptId},
+            </if>
+            <if test="createTime!=null">
+                create_time=#{createTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="updateTime!=null">
+                update_time=#{updateTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="cancelReason!=null and cancelReason!=''" >
+                cancel_reason=#{cancelReason},
+            </if>
+            <if test="isTemporary!=null">
+                is_temporary=#{isTemporary}
+            </if>
+        </set>
+        where route_no=#{routeNo,jdbcType=BIGINT}
+    </update>
+
+    <resultMap id="routeInfoResultMap" type="com.apin.po.Route">
+        <id column="id" property="id"/>
+        <result column="route_status" property="routeStatus"/>
+        <result column="passenger_num" property="passengerNum"/>
+        <result column="description" property="description"/>
+        <result column="route_type" property="routeType"/>
+        <result column="create_time" property="createTime"/>
+    </resultMap>
+
+    <select id="getRouteInfoByRouteNo" resultMap="routeInfoResultMap" parameterType="Long">
+        select * from apin_route where route_no=#{routeNo}
+    </select>
+
+
+
+
+</mapper>

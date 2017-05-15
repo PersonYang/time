@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.apin.dao.RouteDistributeMerchantInfoMapper">
+
+    <resultMap id="routeDistributeMerchantInfoResultMap" type="com.apin.po.RouteDistributeMerchantInfo">
+        <id column="id" property="id"/>
+        <result column="merchant_id" property="merchantId"/>
+        <result column="route_no" property="routeNo"/>
+        <result column="expire_time" property="expireTime"/>
+        <result column="handle_status" property="handleStatus"/>
+        <result column="update_time" property="updateTime"/>
+        <result column="create_time" property="createTime"/>
+        <result column="is_matched" property="isMatched"/>
+    </resultMap>
+
+
+    <select id="selectRouteDistributeMerchantInfoByRouteNo" parameterType="Long" resultMap="routeDistributeMerchantInfoResultMap">
+        select * from apin_route_distribute_merchant_info where route_no=#{routeNo}
+    </select>
+
+    <update id="updateStatusByList">
+        update apin_route_distribute_merchant_info rdmi
+        <set>
+            <if test="handleStatus!=null">
+                rdmi.handle_status=#{handleStatus,jdbcType=TINYINT},
+            </if>
+            <if test="updateTime!=null">
+                rdmi.update_time=#{updateTime,jdbcType=TIMESTAMP}
+            </if>
+        </set>
+        WHERE rdmi.id in
+        <foreach collection="idList" item="id" open="(" separator="," close=")">
+            #{id}
+        </foreach>
+    </update>
+
+
+</mapper>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
