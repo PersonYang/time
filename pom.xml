@@ -13,11 +13,6 @@
         <project.mainClass>com.apin.Server</project.mainClass>
     </properties>
 
-    <!--<scm>-->
-        <!--&lt;!&ndash; 这个地方花了很长的时间，原因在于模仿网上scm:svn:http://192.168.1.68:3690/java/Trunk/201609用了http协议，而不知道根据自己事实上的情况是使用svn协议&ndash;&gt;-->
-        <!--<connection>scm:svn:svn://192.168.1.68/java/Trunk/timer</connection>-->
-        <!--<developerConnection>scm:svn:svn://192.168.1.68/java/Trunk/timer</developerConnection>-->
-    <!--</scm>-->
 
     <dependencies>
         <dependency>
